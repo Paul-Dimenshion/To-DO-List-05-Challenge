@@ -10,7 +10,7 @@ $(document).ready(function () {
    const events = document.querySelectorAll('header');
 
    events.forEach(event => {
-    const date = dayjs(event.dataset.date)
+    const date = dayjs(event.dataset.date).format('ddd, D MMM, YYYY. hh:mm A')
     const dateElement = event.querySelector('.date')
     dateElement.innerText = date
     })
