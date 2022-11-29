@@ -15,20 +15,21 @@ $(document).ready(function () {
     dateElement.innerText = date
     })
   
+    let currentHour = dayjs().hour()
   console.log(events)
   console.log(dayjs())
 
   //grabs hour from each time slot and compares it to actual time
-  $(".time-div").each(function () {
-    var timeDiv = $(this).attr("id").split("-")[1];
+  $(".time-block").each(function () {
+    let timeBlock = $(this).attr("id");
     
-    if (currentHour == timeDiv) {
+    if (currentHour == timeBlock) {
       $(this).addClass("present");
       $(this).children(".description").addClass("white-text");
-    } else if (currentHour < timeDiv) {
+    } else if (currentHour < timeBlock) {
       $(this).removeClass("present");
       $(this).addClass("future");
-    } else if (currentHour > timeDiv) {
+    } else if (currentHour > timeBlock) {
       $(this).removeClass("future");
       $(this).addClass("past");
     }
@@ -37,8 +38,8 @@ $(document).ready(function () {
     //grabs values from time and value divs and saves them to local storage
     $(".saveBtn").click(function (event) {
       event.preventDefault();
-      var value = $(this).siblings(".time-block").val();
-      var time = $(this).parent().attr("id").split("-")[1];
+      let value = $(this).siblings(".time-block").val();
+      let time = $(this).parent().attr("id");
       localStorage.setItem(time, value);
     });
   
